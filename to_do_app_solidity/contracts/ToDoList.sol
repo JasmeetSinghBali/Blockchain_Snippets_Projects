@@ -21,7 +21,7 @@ contract ToDoList{
  // constructor called when SC is deployed for the first time to populate the tasks mapping.
 
  constructor() public{
-     createTask("Check Out Solidity & Blockchain");    
+     createTask("Check Out Solidity & Blockchain");
  }
 
  // to put Task inside the mapping we will define a function
