@@ -256,12 +256,12 @@
 
 - [x] Steps to follow
 
-   - [ ] connect browser to blockchain via metamask
+   - [x] connect browser to blockchain via metamask
     - [x] in metamask browser set up network a/c to ganache RPC Server and chain id.
     - [x] open ganache -> the first entry in ganache as it is through which smart contract is deployed show key (keysymbol) -> copy the key -> in the browser go to metamask via extension -> private network -> localhost 127.0.0.1:7545 -> accounts menu->import account -> type private key and paste the private key ->import
 
 
-   - [ ] connect client side application to blockchain via web3.js
+   - [x] connect client side application to blockchain via web3.js
 
 - ****refer https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8****
 
@@ -282,9 +282,15 @@
       }
 - ****basically exposing the src and build to the lite server and then the dependancies can now be refferenced via the /vendor routes.****
 
+- ****npm run dev to start the lite-server for  the client side application.****
 
+- ****NOTE GO TO METAMASK EXTENSION AFTER OPENING LOCALHOST3000 AND THEN CLICK ON THREE DOTS AND -->CONNECTED SITES --> MANUALLY CONNECT TO THE ACCOUNT IN WHIHC YOU IMPORTED THE FIRST GANACHE ENTRY****
 
+> ## Load the smart contract from BlockChain & interact with javascript version of it!
+
+- ****refer loadContract asynch function in src->app.js****
+- ****Truffle contracts(create a javascript version of the SC) so that we can interact with the contract.****
 
 
 Timestamp https://www.youtube.com/watch?v=coQ5dg8wM2o
-45:00
+53:40
