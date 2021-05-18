@@ -25,6 +25,12 @@ contract ToDoList{
   bool completed
  );
 
+ // Complete task event
+ event TaskCompleted(
+   uint id,
+   bool completed
+ );
+
  // constructor called when SC is deployed for the first time to populate the tasks mapping.
  constructor() public{
      createTask("Check Out Solidity & Blockchain");
@@ -41,4 +47,15 @@ contract ToDoList{
       // Broadcast an event when a task was created
       emit TaskCreated(taskCount, _content, false);
       }
+
+ // to add or remove the checked/unchecked task in and out of completed list
+ // the _task means that it is a local variable not a state variable it is a convention way of reffering to local variables over state variables
+ function toggleCompleted(uint _id) public{
+    Task memory _task=tasks[_id];
+    _task.completed=!_task.completed;
+    tasks[_id]=_task;
+
+    emit TaskCompleted(_id, _task.completed);
  }
+
+}

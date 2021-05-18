@@ -133,6 +133,16 @@ App = {
     window.location.reload();// will refresh the page so to avoid double rendering issue
   },
 
+  // toggle completed function
+  toggleCompleted:async(e)=>{
+    web3.eth.defaultAccount=web3.eth.accounts[0];
+    App.setLoading(true);
+    const taskId=e.target.name;
+    await App.todoList.toggleCompleted(taskId);
+
+    window.location.reload();
+  },
+
    // shows and hide the loader,content(in html) when the render function is executing
    setLoading:(boolean)=>{
      App.loading=boolean

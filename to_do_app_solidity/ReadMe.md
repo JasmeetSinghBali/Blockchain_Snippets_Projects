@@ -324,6 +324,3 @@
        console.log(web3.eth.defaultAccount);
 
 - ****Also can check in ganache transaction or logs  section to verify your transactions history****
-
-Timestamp https://www.youtube.com/watch?v=coQ5dg8wM2o
-59:00
