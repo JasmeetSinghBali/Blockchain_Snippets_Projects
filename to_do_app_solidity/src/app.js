@@ -118,6 +118,21 @@ App = {
     }
   },
 
+  // create new task via form
+  createTask:async()=>{
+
+    web3.eth.defaultAccount=web3.eth.accounts[0];
+    console.log(web3.eth.defaultAccount);
+
+    App.setLoading(true);
+    const content =$('#newTask').val();// grab the new val of the task
+
+    // pass the form content to the todoList.createTask with content
+    await App.todoList.createTask(content);
+
+    window.location.reload();// will refresh the page so to avoid double rendering issue
+  },
+
    // shows and hide the loader,content(in html) when the render function is executing
    setLoading:(boolean)=>{
      App.loading=boolean

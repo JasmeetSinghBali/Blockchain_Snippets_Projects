@@ -18,8 +18,14 @@ contract ToDoList{
 
  mapping(uint => Task) public tasks; // public will provide a reader function to access this mapping out of the scope of this mapping also.
 
- // constructor called when SC is deployed for the first time to populate the tasks mapping.
+ // event that gets triggered when a new task is created
+ event TaskCreated(
+  uint id,
+  string content,
+  bool completed
+ );
 
+ // constructor called when SC is deployed for the first time to populate the tasks mapping.
  constructor() public{
      createTask("Check Out Solidity & Blockchain");
  }
@@ -31,5 +37,8 @@ contract ToDoList{
 
       // this will put Task with taskCount as id , content as _content and checkbox as false and put it inside the mapping tasks with taskCount as index.
       tasks[taskCount]=Task(taskCount,_content,false);
+
+      // Broadcast an event when a task was created
+      emit TaskCreated(taskCount, _content, false);
       }
  }

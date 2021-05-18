@@ -292,5 +292,38 @@
 - ****Truffle contracts(create a javascript version of the SC) so that we can interact with the contract.****
 
 
+> ## Writing test cases for blockchain via mocha and chai
+
+- ****truffle test(different teminal) to execute the test on already running solidity  application refer test directory****
+
+> ## Creating Tasks by Solidity (events that are triggered anytime anything happens inside the Smart contract)
+
+- ****So we can listen to the events so that when a certain function executes in the smart contract we get kinda notification refer ToDoList.sol in the build->contracts directory****
+
+- ****Example****
+
+         // event that gets triggered when a new task is created
+
+         event TaskCreated(
+          uint id,
+          string content,
+          bool completed
+         );
+
+         // calling or handling this event via emit which creates a task with taskCount value as its id,content and then boolean value of false
+
+         function createTask(){
+           emit TaskCreated(taskCount,_content,false);
+         }
+
+- ****the event info is container in logs properties of the event result attribute refer ToDoList.test.js****
+
+> ## IMPORTANT While Creating new task u need to exlplicitely mention the default account etherium will use/charge to create the task.
+
+       web3.eth.defaultAccount=web3.eth.accounts[0];
+       console.log(web3.eth.defaultAccount);
+
+- ****Also can check in ganache transaction or logs  section to verify your transactions history****
+
 Timestamp https://www.youtube.com/watch?v=coQ5dg8wM2o
 59:00
