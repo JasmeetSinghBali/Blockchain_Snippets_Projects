@@ -1,7 +1,22 @@
 > ## Building Our Own Cryptocurrency governed by Smart Contract
 
-timestamp-845
+timestamp-4730
 SRC: https://www.dappuniversity.com/articles/code-your-own-cryptocurrency-on-ethereum
+
+> ## Blueprint/Steps
+
+- [x] truffle init in the empty project directory
+   - [x] folders contracts,migrations,test,truffle-config.js
+   - [x] set up the truffle-config.js
+- [x] write your token Smart contract(GarewaToken.sol) ****This Will implement the ERC-20 standard based token****
+    - [x] test out wheather everything is set up correctly by writing a 2_ migrations file and then compiling the code.
+    - [x] make sure ganache is running
+    - [x] truffle migrate if first time
+    - [x] truffle migrate --reset each time u make changes in SC
+    - [x] Write first test,compile,migrate --reset then truffle test
+    - [x] If above steps completed then Basic bolierplate Setup Done
+***
+***
 
 > ### Aim -
 
