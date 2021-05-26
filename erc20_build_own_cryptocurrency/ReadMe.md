@@ -1,7 +1,15 @@
 > ## Building Our Own Cryptocurrency governed by Smart Contract
 
-timestamp-4730
+timestamp-135
 SRC: https://www.dappuniversity.com/articles/code-your-own-cryptocurrency-on-ethereum
+
+> ## Test Cases Sceenshots
+
+<img src="./images_dev/testcases.png">
+
+- [x] Initializing Name,symbol,standard
+- [x] allocating coin to the Admin/first account in blockchain
+- [x] transferring 250000 from Admin(user[0]) to the other user[1] Account on the Blockchain.
 
 > ## Blueprint/Steps
 
