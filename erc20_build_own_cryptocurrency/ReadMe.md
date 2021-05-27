@@ -1,6 +1,6 @@
 > ## Building Our Own Cryptocurrency governed by Smart Contract
 
-timestamp-135
+timestamp-240
 SRC: https://www.dappuniversity.com/articles/code-your-own-cryptocurrency-on-ethereum
 
 > ## Test Cases Sceenshots
@@ -10,6 +10,16 @@ SRC: https://www.dappuniversity.com/articles/code-your-own-cryptocurrency-on-eth
 - [x] Initializing Name,symbol,standard
 - [x] allocating coin to the Admin/first account in blockchain
 - [x] transferring 250000 from Admin(user[0]) to the other user[1] Account on the Blockchain.
+
+<img src="./images_dev/test_transfer_event.png">
+
+- [x] test transfer event triggering or not when transfer of token function executes.
+- [x] test that transfer function returns true if transfer goes right.
+
+<img src="./images_dev/delegated_transfer.png">
+
+- [x] Approval and allowance check
+- [x] Delegated transfer check (transferFrom)
 
 > ## Blueprint/Steps
 

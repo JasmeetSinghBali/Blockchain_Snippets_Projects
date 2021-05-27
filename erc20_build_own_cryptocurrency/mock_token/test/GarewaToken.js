@@ -49,4 +49,86 @@ contract('GarewaToken',(accounts)=>{
     assert.equal(balanceAdmin.toNumber(),750000,'Deducts 250000 from Sender account');
   })
 
+  it('test for the transfer event trigger by the Receipt',async()=>{
+    const exchangeReceipt=await this.myContract.transfer(accounts[1],25,{from:accounts[0]});
+    console.log(`GAWT Transfer Receipt : ${JSON.stringify(exchangeReceipt)}`);
+    assert.equal(exchangeReceipt.logs.length,1,'triggers one event');
+    assert.equal(exchangeReceipt.logs[0].event,'Transfer','should be the "Transfer" event');
+    console.log(`Number of Event Triggered: ${exchangeReceipt.logs.length}`);
+    console.log(`Event Name : ${exchangeReceipt.logs[0].event}`);
+    assert.equal(exchangeReceipt.logs[0].args._from,accounts[0],'logs the from account');
+    assert.equal(exchangeReceipt.logs[0].args._to,accounts[1],'logs the to account');
+    console.log(`GAWT Tranferred From: ${exchangeReceipt.logs[0].args._from}`);
+    console.log(`GAWT Tranferred To: ${exchangeReceipt.logs[0].args._to}`) ;
+    assert.equal(exchangeReceipt.logs[0].args._value,25,'logs the transfer amount');
+    console.log(`GAWT transferred: ${exchangeReceipt.logs[0].args._value}`);
+    const balanceSecondUser=await this.myContract.balanceOf(accounts[1]);
+    console.log(`User 2 on Blockchain has : ${balanceSecondUser.toNumber()} GAWT now...`);
+    const balanceAdmin=await this.myContract.balanceOf(accounts[0]);
+    console.log(`Admin Account now has balance of :${balanceAdmin.toNumber()} GAWT`);
+  })
+
+  // note .call() only calls the function it do not changes the data on the blockchain or the amount of GAWT each accounts hold
+  // good appraoch for testing only the return value
+  it('Check transfer function returns a bool value',async()=>{
+    const success=await this.myContract.transfer.call(accounts[1],50,{from:accounts[0]});
+    assert.equal(success,true,'it returns true');
+  })
+
+  it('test the "Approves token for deligated transfer" Mechanism',async()=>{
+    const success=await this.myContract.approve.call(accounts[1],100);
+    assert.equal(success,true,'it returns true');
+
+    // approve test cases
+
+    const exchangeReceipt=await this.myContract.approve(accounts[1],100,{ from:accounts[0] });
+    //console.log(`GAWT Transfer Receipt : ${JSON.stringify(exchangeReceipt)}`);
+    assert.equal(exchangeReceipt.logs.length,1,'triggers 1 Approval event');
+    assert.equal(exchangeReceipt.logs[0].event,'Approval','should be the "Approval" event');
+    console.log(`Number of Event Triggered: ${exchangeReceipt.logs.length}`);
+    console.log(`Event Name : ${exchangeReceipt.logs[0].event}`);
+    assert.equal(exchangeReceipt.logs[0].args._owner,accounts[0],'logs the from account who authorize the token');
+    assert.equal(exchangeReceipt.logs[0].args._spender,accounts[1],'logs the to account to whom the tokens are authorized');
+    console.log(`GAWT Tranferred From: ${exchangeReceipt.logs[0].args._owner}`);
+    console.log(`GAWT Tranferred To: ${exchangeReceipt.logs[0].args._spender}`) ;
+    assert.equal(exchangeReceipt.logs[0].args._value,100,'logs the approve delegated transfer amount');
+    console.log(`GAWT Approved delegated transfer Amount : ${exchangeReceipt.logs[0].args._value}`);
+
+    // allowance test cases
+
+    const allowance=await this.myContract.allowance(accounts[0],accounts[1]);
+    assert.equal(allowance.toNumber(),100,'stores the allowance for delegated transfer');
+    console.log(`accounts[0] gave allowance of : ${allowance.toNumber()} to account[1]`);
+  })
+
+  // handles delegated transfers transferfrom
+  it('test the transferfrom delegated transfer',async()=>{
+    const fromAccount=accounts[2];
+    const toAccount=accounts[3];
+    const spendingAccount=accounts[4];
+    // Transfer tokens fromAccount
+    const transferReceipt=await this.myContract.transfer(fromAccount,100,{from:accounts[0]});
+    //console.log(`transfer token to accounts[2] from accounts[0]:${JSON.stringify(transferReceipt)}`);
+    // Approve spendingAccount to spend 10 tokens from fromAccount
+    const approveReceipt=await this.myContract.approve(spendingAccount,10,{from:fromAccount});
+    //console.log(`Approve receipt to approve spendingAccount to spent 10 tokens:${JSON.stringify(approveReceipt)}`);
+    // const success=await this.myContract.transferFrom.call(fromAccount,toAccount,10,{from:spendingAccount});
+    // assert.equal('success',true);
+
+    const transferfromReceipt=await this.myContract.transferFrom(fromAccount,toAccount,10,{from:spendingAccount});
+    assert.equal(transferfromReceipt.logs.length,1,'triggers 1 transferFrom event');
+    assert.equal(transferfromReceipt.logs[0].event,'Transfer','should be the "Transfer" event');
+    console.log(`Number of Event Triggered: ${transferfromReceipt.logs.length}`);
+    console.log(`Event Name : ${transferfromReceipt.logs[0].event}`);
+    assert.equal(transferfromReceipt.logs[0].args._from,fromAccount,'logs the from account who authorize the token');
+    assert.equal(transferfromReceipt.logs[0].args._to,toAccount,'logs the to account to whom the tokens are authorized');
+    console.log(`GAWT Tranferred From: ${transferfromReceipt.logs[0].args._from}`);
+    console.log(`GAWT Tranferred To: ${transferfromReceipt.logs[0].args._to}`) ;
+    assert.equal(transferfromReceipt.logs[0].args._value,10,'logs the approve delegated transfer amount');
+    console.log(`GAWT Approved delegated transfer Amount : ${transferfromReceipt.logs[0].args._value}`);
+
+    const success=await this.myContract.transferFrom.call(fromAccount,toAccount,10,{from:spendingAccount});
+
+  })
+
 })
