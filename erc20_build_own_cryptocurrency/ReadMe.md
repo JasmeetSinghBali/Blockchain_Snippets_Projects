@@ -1,7 +1,5 @@
 > ## Building Our Own Cryptocurrency governed by Smart Contract
 
-timestamp-240
-SRC: https://www.dappuniversity.com/articles/code-your-own-cryptocurrency-on-ethereum
 
 > ## Test Cases Sceenshots
 
@@ -20,6 +18,51 @@ SRC: https://www.dappuniversity.com/articles/code-your-own-cryptocurrency-on-eth
 
 - [x] Approval and allowance check
 - [x] Delegated transfer check (transferFrom)
+
+> ## Truffle Console debugging
+
+<img src="./images_dev/truffle_console_first.png">
+
+- [x] name,symbol,standard checks
+- [x] addresses on the blockchain
+- [x] balance check on the admin i.e accounts[0]
+
+
+> #### Transfer 2 tokens from admin(account[0]) to receiver(account[1]) and Transfer event in logs
+
+<img src="./images_dev/transfer_1_console.png">
+
+<img src="./images_dev/transfer_2_console.png">
+
+<img src="./images_dev/transfer_4_console.png">
+
+<img src="./images_dev/transfer_3_console.png">
+
+> #### Approve and Approval event
+
+<img src="./images_dev/approve_1_console.png">
+
+<img src="./images_dev/approve_2_console.png">
+
+<img src="./images_dev/approve_3_console.png">
+
+> #### Delegated Transfer check console
+
+<img src="./images_dev/delegated_1_console.png">
+
+<img src="./images_dev/delegated_2_console.png">
+
+<img src="./images_dev/delegated_3_transfer.png">
+
+<img src="./images_dev/delegated_4_console.png">
+
+<img src="./images_dev/delegated_5_console.png">
+
+<img src="./images_dev/delegated_6_console.png">
+
+- [x] the fromAccount which had 100 now has 90
+- [x] the toAccount got 10
+- [x] and the allowance which was 10 is now set back to 0 after 10 token transferFrom(delegated transfer was successfull).
 
 > ## Issues
 - [ ] causes VM exception issues while processing transaction updating allowance.
@@ -92,3 +135,6 @@ https://ethereum.org/en/developers/docs/standards/tokens/erc-20/
 
 - OpenZeppelin implementation
 - ConsenSys implementation
+
+timestamp-3642
+SRC: https://www.dappuniversity.com/articles/code-your-own-cryptocurrency-on-ethereum
