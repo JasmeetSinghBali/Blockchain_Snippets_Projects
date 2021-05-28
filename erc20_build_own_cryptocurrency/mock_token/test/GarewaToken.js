@@ -129,6 +129,19 @@ contract('GarewaToken',(accounts)=>{
 
     const success=await this.myContract.transferFrom.call(fromAccount,toAccount,10,{from:spendingAccount});
 
-  })
+    // check balance of fromAccount and toAccount
+    const balanceSender = await this.myContract.balanceOf(fromAccount);
+    assert.equal(balanceSender.toNumber(),90,'checks that the fromAccount has now balance of 90');
+    console.log(`Now the Sender's Account who had earlier 100 tokens now have :${balanceSender.toNumber()} GAWT`);
+
+    const balance = await this.myContract.balanceOf(toAccount);
+    assert.equal(balance.toNumber(),10,'checks that the toAccount has now balance of 10');
+    console.log(`Now the Reciever's Account who had earlier 0 tokens now has :${balance.toNumber()} GAWT`);
+
+    // check that allowance is now 0 after 10 token transfer
+    const allowance = this.myContract.allowance(fromAccount,spendingAccount);
+    console.log(`Now the allowance is set to 0 : ${allowance.toNumber()}`);
+    assert.equal(allowance.toNumber(),0,'check that the allowance is set to 0 when the 10 token transfer was done.');
+    })
 
 })

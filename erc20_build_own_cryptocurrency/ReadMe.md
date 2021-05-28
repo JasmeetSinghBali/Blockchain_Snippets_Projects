@@ -21,6 +21,9 @@ SRC: https://www.dappuniversity.com/articles/code-your-own-cryptocurrency-on-eth
 - [x] Approval and allowance check
 - [x] Delegated transfer check (transferFrom)
 
+> ## Issues
+- [ ] causes VM exception issues while processing transaction updating allowance.
+
 > ## Blueprint/Steps
 
 - [x] truffle init in the empty project directory

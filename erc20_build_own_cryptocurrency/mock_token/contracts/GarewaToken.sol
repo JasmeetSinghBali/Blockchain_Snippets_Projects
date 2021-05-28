@@ -105,7 +105,13 @@ contract GarewaToken{
         // Require allowance is big enough approved
 
         // Change the Balance
-        // update the allowance
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+
+        // update the allowance Issue causes VM exception while processing transactions.
+        allowance[_from][msg.sender] -= _value;
+
+
         // trigger the Transfer event
         emit Transfer(_from,_to,_value);
 
